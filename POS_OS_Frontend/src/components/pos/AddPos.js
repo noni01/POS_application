@@ -300,7 +300,7 @@ const AddPos = ({
 							<strong>{returnAmount} tk</strong>
 						</div>
 						<Col span={24}>
-						<Form.Item>
+						<Form.Item className="mt-1 mb-1">
 							<Button
 								block
 								type='primary'
@@ -340,7 +340,7 @@ const AddPos = ({
 						{/* </div> */}
 					</Col>
 
-					<Col span={24}>
+					<Col span={24} className="mt-2">
 						<Products
 							formData={formData}
 							setData={setFormData}

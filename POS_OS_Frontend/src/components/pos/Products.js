@@ -13,9 +13,9 @@ export default function Products({
 	handleSelectedProdsUnitPrice,
 }) {
 	return (
-		<div className='products-container-wrapper'>
+		<div className='products-container-wrapper '>
 			<div className='products-container'>
-				<Row gutter={[16]}>
+				<Row gutter={[16]} style={{backgroundColor: "rgb(44 44 44)", color:"white", padding:"2px"}}>
 					<Col span={2}>
 						<div className='font-weight-bold border-b'>SL</div>
 					</Col>
@@ -39,7 +39,7 @@ export default function Products({
 					</Col>
 				</Row>
 
-				<hr style={{ backgroundColor: "black" }} />
+				{/* <hr style={{ backgroundColor: "black" }} /> */}
 
 				<Form.List name='saleInvoiceProduct'>
 					{(fields, { add, remove }) => (
