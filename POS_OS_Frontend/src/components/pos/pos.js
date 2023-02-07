@@ -12,8 +12,12 @@ const Sale = (props) => {
 
   const handleSelectedProds = (prod) => {
     const foundProd = selectedProds.find((item) => item.id === prod.id);
-    if (foundProd === undefined) {
-      setSelectedProds((prev) => [...prev, { ...prod, selectedQty: 1 }]);
+
+    if (foundProd === undefined && prod.quantity > 0) {
+
+        setSelectedProds((prev) => [...prev, { ...prod, selectedQty: 1 }]);
+      
+      
     }
   };
 
