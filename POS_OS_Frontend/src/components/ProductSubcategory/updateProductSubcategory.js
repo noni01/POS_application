@@ -44,9 +44,13 @@ function UpdateProductSubCategory() {
 	const onFinish = (values) => {
 		try {
 			updateProductSubcategory(id, values);
+			
 			setSuccess(true);
 			toast.success("subcategory details is updated");
 			setInitValues({});
+			console.log("product sub category", setInitValues)
+			
+			
 		} catch (error) {
 			console.log(error.message);
 		}

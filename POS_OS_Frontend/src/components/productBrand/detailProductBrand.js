@@ -79,6 +79,7 @@ function CustomTable({ list, categoryName }) {
 	];
 
 	useEffect(() => {
+	
 		setColumnItems(menuItems);
 		setColumnsToShow(columns);
 	}, []);
@@ -207,7 +208,7 @@ const DetailProductBrand = () => {
 								<div className='text-end w-50'>
 									<Link
 										className='me-3 d-inline-block'
-										to={`/product-category/${brand.id}/update`}
+										to={`/product-brand/${brand.id}/update`}
 										state={{ data: brand }}>
 										<Button
 											type='primary'

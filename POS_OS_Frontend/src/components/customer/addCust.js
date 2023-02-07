@@ -12,6 +12,10 @@ const AddCust = () => {
 
 	const [form] = Form.useForm();
 	const [loading, setLoading] = useState(false);
+	// const [phoneNumber, setPhoneNumber]= useState("");
+	// const [errorMessage, setErrorMessage] = useState("");
+	
+
 
 	const onClick = () => {
 		setLoading(true);
@@ -83,6 +87,7 @@ const AddCust = () => {
 								style={{ marginBottom: "10px" }}
 								label='Phone'
 								name='phone'
+								
 								rules={[
 									{
 										required: true,

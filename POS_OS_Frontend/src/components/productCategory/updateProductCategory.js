@@ -47,6 +47,7 @@ function UpdateProductCategory() {
       setSuccess(true);
       toast.success("category details is updated");
       setInitValues({});
+     
     } catch (error) {
       console.log(error.message);
     }

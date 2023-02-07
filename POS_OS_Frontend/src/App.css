@@ -51,7 +51,7 @@ body {
 
 .ant-layout-sider {
   background: var(--sidenav-bg);
-  color: ;
+  color: var(--text);
 }
 
 .ant-menu.ant-menu-dark,

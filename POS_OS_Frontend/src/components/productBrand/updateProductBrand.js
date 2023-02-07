@@ -1,12 +1,13 @@
 import { Alert, Button, Col, Form, Input, Row, Typography } from "antd";
 import axios from "axios";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Navigate, useLocation, useParams } from "react-router-dom";
 import { toast } from "react-toastify";
 import PageTitle from "../page-header/PageHeader";
 
 //Update Category API REQ
-const updateProductBrand = async (id, values) => {
+const updateProductBrandApi = async (id, values) => {
+
   try {
     await axios({
       method: "put",
@@ -14,7 +15,7 @@ const updateProductBrand = async (id, values) => {
         Accept: "application/json",
         "Content-Type": "application/json;charset=UTF-8",
       },
-      url: `product-category/${id}`,
+      url: `product-brand/${id}`,
       data: {
         ...values,
       },
@@ -43,7 +44,7 @@ function UpdateProductBrand() {
 
   const onFinish = (values) => {
     try {
-      updateProductBrand(id, values);
+      updateProductBrandApi(id, values);
       setSuccess(true);
       toast.success("brand details is updated");
       setInitValues({});
@@ -57,6 +58,8 @@ function UpdateProductBrand() {
   };
 
   const isLogged = Boolean(localStorage.getItem("isLogged"));
+
+  
 
   if (!isLogged) {
     return <Navigate to={"/auth/login"} replace={true} />;

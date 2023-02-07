@@ -2,6 +2,7 @@ import axios from "axios";
 import { PRODUCT_BRANDS } from "../../types/ProductBrandType";
 
 const getAllProductBrand = (data) => {
+	console.log("get brand id", data)
 	return {
 		type: PRODUCT_BRANDS,
 		payload: data,

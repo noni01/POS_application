@@ -1,9 +1,10 @@
-.products-container-wrapper {
-  padding-right: 15px;
+.products-contain-wrapper {
+  
   max-height: 300px;
   overflow-y: hidden;
   overflow-x: hidden;
 }
 
-.products-container {
+.ant-input-number{
+  padding: 0 !important;
 }
