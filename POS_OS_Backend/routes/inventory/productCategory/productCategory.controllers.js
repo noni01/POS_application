@@ -127,15 +127,19 @@ const getSingleProductCategory = async (req, res) => {
 };
 
 const updateSingleProductCategory = async (req, res) => {
+ 
   try {
+    
     const updatedProductCategory = await prisma.product_category.update({
       where: {
         id: parseInt(req.params.id),
+        
       },
       data: {
         name: req.body.name,
       },
     });
+
     res.json(updatedProductCategory);
   } catch (error) {
     res.status(400).json(error.message);

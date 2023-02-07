@@ -63,7 +63,9 @@ const getAllProductBrand = async (req, res) => {
           product: true,
         },
       });
-      res.json(getAllProductBrand);
+     
+      res.json(getAllProductBrand); 
+      
     } catch (error) {
       res.status(400).json(error.message);
       console.log(error.message);
@@ -82,6 +84,7 @@ const getAllProductBrand = async (req, res) => {
         skip: parseInt(skip),
         take: parseInt(limit),
       });
+     
       res.json(getAllProductBrand);
     } catch (error) {
       res.status(400).json(error.message);
@@ -123,7 +126,9 @@ const updateSingleProductBrand = async (req, res) => {
         name: req.body.name,
       },
     });
+    console.log("update brand", updateProductBrand)
     res.json(updatedProductBrand);
+    
   } catch (error) {
     res.status(400).json(error.message);
     console.log(error.message);

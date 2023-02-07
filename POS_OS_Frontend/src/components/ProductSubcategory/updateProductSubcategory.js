@@ -1,12 +1,13 @@
 import { Alert, Button, Col, Form, Input, Row, Typography } from "antd";
 import axios from "axios";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Navigate, useLocation, useParams } from "react-router-dom";
 import { toast } from "react-toastify";
 import PageTitle from "../page-header/PageHeader";
 
 //Update Category API REQ
-const updateProductSubcategory = async (id, values) => {
+const updateProductSubcategoryApi = async (id, values) => {
+	alert("ID")
 	try {
 		await axios({
 			method: "put",
@@ -14,7 +15,7 @@ const updateProductSubcategory = async (id, values) => {
 				Accept: "application/json",
 				"Content-Type": "application/json;charset=UTF-8",
 			},
-			url: `product-subcategory/${id}`,
+			url: `product-sub-category/${id}`,
 			data: {
 				...values,
 			},
@@ -43,7 +44,7 @@ function UpdateProductSubCategory() {
 
 	const onFinish = (values) => {
 		try {
-			updateProductSubcategory(id, values);
+			updateProductSubcategoryApi(id, values);
 			
 			setSuccess(true);
 			toast.success("subcategory details is updated");
@@ -61,10 +62,16 @@ function UpdateProductSubCategory() {
 	};
 
 	const isLogged = Boolean(localStorage.getItem("isLogged"));
+	useEffect(() => {
+		alert("SUBCAT");
+	  }, [])
 
 	if (!isLogged) {
 		return <Navigate to={"/auth/login"} replace={true} />;
 	}
+
+	
+	
 
 	return (
 		<>
