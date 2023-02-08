@@ -8,6 +8,9 @@ import {
   Row,
   Select,
   Spin,
+  Popover,
+  Radio,
+  Space,
   Tag,
 } from "antd";
 import React, { useEffect, useState } from "react";
@@ -18,12 +21,14 @@ import { loadPosProduct } from "../../redux/actions/product/getPosProductAction"
 import { loadSingleProductSubCategory } from "../../redux/actions/productSubCategory/detailProductSubCategoryAction";
 import { loadAllProductSubCategory } from "../../redux/actions/productSubCategory/getProductSubCategory";
 import "./pos.css";
+import "./productforsale.css";
 
 export default function ProductsForSale({ handleSelectedProds }) {
   const dispatch = useDispatch();
   const list = useSelector((state) => state.products.list);
   const subCategory = useSelector((state) => state.productSubCategories?.list);
   const [loading, setLoading] = useState(false);
+  
 
   const [finalSubCat, setfinalSubCat] = useState([]);
 
@@ -58,6 +63,9 @@ export default function ProductsForSale({ handleSelectedProds }) {
     getTotalProduct().then((res) => setTotalProd(res));
   }, [list]);
 
+
+
+
   const handleSubCatChange = (catId) => {
     if (catId === 0) {
       dispatch(loadAllProductSubCategory({ page: 1, limit: 100 }));
@@ -67,23 +75,25 @@ export default function ProductsForSale({ handleSelectedProds }) {
       setProdList(null);
     }
   };
+ 
 
   const [status, setStatus] = useState("true");
 
   const onShowSizeChange = (current, pageSize) => {};
 
-  const Products = ({ item, index }) => {
-    console.log("item", item);
+  const Products = ({ item, index,  }) => {
+    
     let stockMessage;
-	let isDisabled = false;
+    let isDisabled = false;
     if (item.quantity <= 0) {
       stockMessage = <p style={{ color: "red" }}>Out of stock!</p>;
-	  isDisabled = true
+      isDisabled = true;
     } else if (item.quantity < 5) {
       stockMessage = <p style={{ color: "orange" }}>Low stock!</p>;
     } else {
-		stockMessage = <p style={{ color: "green" }}>In stock!</p>;
-	}
+      stockMessage = <p style={{ color: "green" }}>In stock!</p>;
+    }
+
     return (
       <Col span={24} sm={12} xl={8} key={index}>
         <Card
@@ -95,9 +105,8 @@ export default function ProductsForSale({ handleSelectedProds }) {
           className="pos-product-card"
           onClick={() => {
             handleSelectedProds(item);
-			
           }}
-		  disabled={isDisabled}
+          disabled={isDisabled}
         >
           <div className="d-flex align-items-center gap-2">
             {/* <div className="w-50" style={{ maxWidth: "5rem" }}>
@@ -115,12 +124,8 @@ export default function ProductsForSale({ handleSelectedProds }) {
               <p className="mb-0" style={{ fontSize: "12px" }}>
                 QTY: {item.quantity}
               </p>
-              {/* {item.quantity <= 0 ? (
-                <p style={{ color: "red" }}>Out of stock!</p>
-              ) : (
-                <p style={{ color: "green" }}>In stock!</p>
-              )} */}
-			  {stockMessage}
+              
+              {stockMessage}
 
               <p style={{ fontSize: "12px" }}> SKU : {item.sku}</p>
             </div>
@@ -130,6 +135,8 @@ export default function ProductsForSale({ handleSelectedProds }) {
       </Col>
     );
   };
+//filter
+ 
 
   // Single Product Search Function
   const [form] = Form.useForm();
@@ -219,7 +226,11 @@ export default function ProductsForSale({ handleSelectedProds }) {
               ))}
           </Select>
         </div>
+        {/* //filter lowStock */}
+        
       </div>
+
+
       <Row className="mt-2" gutter={[20, 20]} style={{ columnGap: "10px" }}>
         {prodList ? (
           prodList.map((item, index) => (

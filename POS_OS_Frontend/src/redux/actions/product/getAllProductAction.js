@@ -2,7 +2,7 @@ import { PRODUCTS } from "../../types/ProductType";
 
 import axios from "axios";
 
-const getAllProductAction = (data) => {
+export const getAllProductAction = (data) => {
 	return {
 		type: PRODUCTS,
 		payload: data,
@@ -10,6 +10,7 @@ const getAllProductAction = (data) => {
 };
 
 export const loadProduct = ({ page, limit, status }) => {
+
 	//dispatching with an call back function and returning that
 	return async (dispatch) => {
 		try {
@@ -18,6 +19,7 @@ export const loadProduct = ({ page, limit, status }) => {
 			);
 			//dispatching data
 			dispatch(getAllProductAction(data));
+			console.log("loadproduct", data)
 		} catch (error) {
 			console.log(error.message);
 		}

@@ -71,7 +71,18 @@ const AddPos = ({
   const [customer, setCustomer] = useState(null);
 
   const [formData, setFormData] = useState({});
-  const [selectedPayment, setSelectedPayment] = useState('option1');
+  const [gst, setGst] = useState(0);
+
+  function handleGst(e) {
+    const selectedOption = e.target.value;
+
+    // Convert the string value to a number
+    const gstPercentage = parseFloat(selectedOption) / 100;
+
+    // Update the state with the converted value
+    setGst(gstPercentage);
+  }
+  console.log("gst check: ", gst);
 
   const [totalDiscountPaidDue, setTotalDiscountPaidDue] = useState({
     total: 0,
@@ -84,7 +95,7 @@ const AddPos = ({
   const handleDiscount = (discountAmount) => {
     const discountPercentage =
       (totalDiscountPaidDue.total * discountAmount) / 100;
-    console.log(discountPercentage);
+
     const afterDiscount = totalDiscountPaidDue.total - discountPercentage;
     let dueAmount = totalDiscountPaidDue.total - discountPercentage;
     if (totalDiscountPaidDue.paid > 0) {
@@ -132,10 +143,12 @@ const AddPos = ({
         discount: totalDiscountPaidDue.discount,
         customer_id: customer,
         user_id: user_id,
-        payment_method: selectedPayment,
+        gst: gst,
         // total_amount: totalDiscountPaidDue.total,
         saleInvoiceProduct: [...saleInvoiceProduct],
       };
+
+      console.log("DATA", valueData);
 
       const resp = await dispatch(addSale(valueData));
 
@@ -274,7 +287,23 @@ const AddPos = ({
                 }}
               >
                 <strong>Total: </strong>
-                <strong>{totalDiscountPaidDue.total} INR</strong>
+                <strong>{totalDiscountPaidDue.total + gst} INR</strong>
+              </div>
+              <div
+                style={{
+                  padding: "10px 20px",
+                  display: "flex",
+                  //gap: "10px",
+                  justifyContent: "space-between",
+                }}
+              >
+                <strong>GST: </strong>
+
+                <select onChange={handleGst}>
+                  <option value="0">0%</option>
+                  <option value="5%">5%</option>
+                  <option value="12%">12%</option>
+                </select>
               </div>
               <div
                 style={{
@@ -297,6 +326,7 @@ const AddPos = ({
                   <InputNumber type="number" onChange={handleDiscount} />
                 </Form.Item>
               </div>
+
               <div
                 style={{
                   padding: "10px 20px",
@@ -305,7 +335,7 @@ const AddPos = ({
                 }}
               >
                 <strong>Pay Amount: </strong>
-                <strong>{totalDiscountPaidDue.afterDiscount} INR</strong>
+                <strong>{totalDiscountPaidDue.afterDiscount + gst} INR</strong>
               </div>
               <div
                 className="d-flex justify-content-between"
@@ -349,33 +379,7 @@ const AddPos = ({
                   {" "}
                 </textarea>
               </div> */}
-              <div
-                style={{
-                  padding: "10px 20px",
-                  display: "flex",
-                  //gap: "10px",
-                  justifyContent: "space-between",
-                }}
-              >
-                <strong>Payment mode: </strong>
-                {/* <Dropdown
-                  menu={{
-                    items,
-                  }}
-                  placement="bottomRight"
-                  arrow
-                >
-                  <Button>Select payment mode</Button>
-                </Dropdown> */}
-                <select
-                  value={selectedPayment}
-                  onChange={(event) => setSelectedPayment(event.target.value)}
-                >
-                  <option value="Cash">Cash</option>
-                  <option value="Online">Online</option>
-                  
-                </select>
-              </div>
+
               <Col span={24}>
                 <Form.Item
                   className="mt-1 mb-1"
