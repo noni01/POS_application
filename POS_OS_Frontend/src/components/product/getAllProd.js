@@ -130,12 +130,27 @@ function CustomTable({ list, total, status }) {
   });
 
   const addKeys = (arr) => arr.map((i) => ({ ...i, key: i.id }));
+  const sortToAscending = () => {
+    console.log("list array 1:", list[0]);
+    console.log(
+      "compare:",
+      Object.entries(list).sort((a, b) => a[1].quantity - b[1].quantity)
+    );
+    const sorted = Object.entries(list).sort(
+      (a, b) => a[1].quantity - b[1].quantity
+    );
+	const newarr = []
+	for(let i = 0; i < sorted.length; i++) {
+		newarr.push(sorted[i][1]);
+	}
+     dispatch(getAllProductAction(newarr))
+  };
 
   return (
     <div>
       <div>
         {list && (
-          <div style={{ marginBottom: "30px" }}>
+          <div style={{ marginBottom: "30px", display: "flex", gap:"10px11n " }}>
             <Dropdown
               overlay={
                 <Menu onClick={colVisibilityClickHandler} items={columnItems} />
@@ -143,7 +158,9 @@ function CustomTable({ list, total, status }) {
               placement="bottomLeft"
             >
               <Button>Column Visibility</Button>
+
             </Dropdown>
+			<Button onClick={sortToAscending}>sort</Button>
           </div>
         )}
       </div>
@@ -174,21 +191,7 @@ const GetAllProd = (props) => {
   const list = useSelector((state) => state.products.list);
   const [total, setTotal] = useState(0);
 
-  const sortToAscending = () => {
-    console.log("list array 1:", list[0]);
-    console.log(
-      "compare:",
-      Object.entries(list).sort((a, b) => a[1].quantity - b[1].quantity)
-    );
-    const sorted = Object.entries(list).sort(
-      (a, b) => a[1].quantity - b[1].quantity
-    );
-	const newarr = []
-	for(let i = 0; i < sorted.length; i++) {
-		newarr.push(sorted[i][1]);
-	}
-     dispatch(getAllProductAction(newarr))
-  };
+  
 
   useEffect(() => {
     dispatch(loadProduct({ status: "true", page: 1, limit: 10 }));
@@ -213,7 +216,7 @@ const GetAllProd = (props) => {
   return (
     <div className="card column-design">
       <div className="card-body">
-        <Button onClick={sortToAscending}>sort</Button>
+        
         <h5>Products List</h5>
         {list && (
           <div className="card-title d-flex justify-content-end">

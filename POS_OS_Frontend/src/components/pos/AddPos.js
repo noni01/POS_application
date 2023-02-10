@@ -71,16 +71,18 @@ const AddPos = ({
   const [customer, setCustomer] = useState(null);
 
   const [formData, setFormData] = useState({});
-  const [gst, setGst] = useState(0);
+  const [gst, setGst] = useState('');
 
-  function handleGst(e) {
-    const selectedOption = e.target.value;
+  function handleGst(gstamount) {
+    
 
-    // Convert the string value to a number
-    const gstPercentage = parseFloat(selectedOption) / 100;
+    
+    const gstPercentage = gstamount / 100;
+    console.log("gst percentage",gstPercentage)
 
     // Update the state with the converted value
     setGst(gstPercentage);
+    
   }
   console.log("gst check: ", gst);
 
@@ -201,6 +203,7 @@ const AddPos = ({
       }));
     }
   }, [selectedProds, totalDiscountPaidDue.paid, totalDiscountPaidDue.discount]);
+ 
 
   return (
     <div className="card-pos">
@@ -212,7 +215,7 @@ const AddPos = ({
           name="dynamic_form_nest_item"
           // onFinish={onFinish}
           // onChange={onChange}
-          initialValues={{ discount: 0 }}
+          initialValues={{ discount: 0, gst: 0 }}
           layout="vertical"
           size="large"
           autoComplete="off"
@@ -293,17 +296,24 @@ const AddPos = ({
                 style={{
                   padding: "10px 20px",
                   display: "flex",
-                  //gap: "10px",
+                  alignItems: "center",
+                  gap: "10px",
                   justifyContent: "space-between",
                 }}
               >
                 <strong>GST: </strong>
-
-                <select onChange={handleGst}>
-                  <option value="0">0%</option>
-                  <option value="5%">5%</option>
-                  <option value="12%">12%</option>
-                </select>
+                <Form.Item
+                 name="gst"
+                 rules={[
+                   {
+                     required: true,
+                     message: "Please input GST!",
+                   },
+                 ]}
+                >
+                  <InputNumber type="number"  onChange={handleGst} />
+                </Form.Item>
+                
               </div>
               <div
                 style={{
@@ -335,7 +345,7 @@ const AddPos = ({
                 }}
               >
                 <strong>Pay Amount: </strong>
-                <strong>{totalDiscountPaidDue.afterDiscount + gst} INR</strong>
+                <strong>{(totalDiscountPaidDue.afterDiscount + gst).toFixed(2)} INR</strong>
               </div>
               <div
                 className="d-flex justify-content-between"
