@@ -15,7 +15,8 @@ const root = ReactDOM.createRoot(document.getElementById("root"));
 
 //Setting AXIOS and token
 // axios.defaults.baseURL = "https://oserpb.herokuapp.com/v1/";
-axios.defaults.baseURL = process.env.REACT_APP_API;
+//axios.defaults.baseURL = process.env.REACT_APP_API;
+axios.defaults.baseURL = "https://api.caphy.in/v1/";
 
 const accessToken = localStorage.getItem("access-token");
 

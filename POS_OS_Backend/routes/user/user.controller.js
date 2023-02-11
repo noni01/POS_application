@@ -5,7 +5,7 @@ const bcrypt = require("bcrypt");
 const saltRounds = 10;
 
 const jwt = require("jsonwebtoken");
-const secret = process.env.JWT_SECRET;
+const secret = 'mysecret';
 
 const login = async (req, res) => {
   try {

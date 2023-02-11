@@ -444,7 +444,7 @@ const AddPos = ({
                 paddingLeft: "0 !important",
               }}
             >
-              <CalcLogic />
+              {/* <CalcLogic /> */}
               <Products
                 formData={formData}
                 setData={setFormData}
