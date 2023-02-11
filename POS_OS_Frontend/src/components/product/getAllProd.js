@@ -150,7 +150,7 @@ function CustomTable({ list, total, status }) {
     <div>
       <div>
         {list && (
-          <div style={{ marginBottom: "30px", display: "flex", gap:"10px11n " }}>
+          <div style={{ marginBottom: "30px", display: "flex", gap:"10px " }}>
             <Dropdown
               overlay={
                 <Menu onClick={colVisibilityClickHandler} items={columnItems} />

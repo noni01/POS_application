@@ -22,6 +22,7 @@ import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import CalcBadge from "../calculator/CalcBadge";
 import "./AddPos.css";
+import CalcLogic from "../calculator/CalcLogic";
 
 const { Title } = Typography;
 
@@ -208,7 +209,7 @@ const AddPos = ({
   return (
     <div className="card-pos">
       <Card className="mt-4 ">
-        <CalcBadge />
+        
         <Form
           form={form}
           className="m-lg-1"
@@ -345,7 +346,7 @@ const AddPos = ({
                 }}
               >
                 <strong>Pay Amount: </strong>
-                <strong>{(totalDiscountPaidDue.afterDiscount + gst).toFixed(2)} INR</strong>
+                <strong>{totalDiscountPaidDue.afterDiscount + gst} INR</strong>
               </div>
               <div
                 className="d-flex justify-content-between"
@@ -443,6 +444,7 @@ const AddPos = ({
                 paddingLeft: "0 !important",
               }}
             >
+              <CalcLogic />
               <Products
                 formData={formData}
                 setData={setFormData}

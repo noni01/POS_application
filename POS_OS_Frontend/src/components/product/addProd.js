@@ -22,7 +22,7 @@ import UploadMany from "../Card/UploadMany";
 import styles from "./AddProd.module.css";
 
 const AddProd = () => {
-	const unitType = ["kg", "ltr", "pc"];
+	const unitType = ["kg", "g","ltr", "pc"];
 	const category = useSelector((state) => state.productCategories?.list);
 
 	const subCategory = useSelector((state) => state.productSubCategories?.list);
@@ -344,6 +344,7 @@ const AddProd = () => {
 									fileList={fileList}
 									maxCount={1}
 									onChange={handelChange}>
+										
 									<div>
 										<PlusOutlined />
 										<div
