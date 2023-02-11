@@ -23,6 +23,7 @@ import { toast } from "react-toastify";
 import CalcBadge from "../calculator/CalcBadge";
 import "./AddPos.css";
 import CalcLogic from "../calculator/CalcLogic";
+import CalcQuant from "../calculator/CalcQuant";
 
 const { Title } = Typography;
 
@@ -129,7 +130,7 @@ const AddPos = ({
 
   // Form Function
   const [form] = Form.useForm();
-
+  
   const onFormSubmit = async (values) => {
     const saleInvoiceProduct = selectedProds.map((prod) => {
       return {
@@ -444,7 +445,7 @@ const AddPos = ({
                 paddingLeft: "0 !important",
               }}
             >
-              {/* <CalcLogic /> */}
+              <CalcLogic/>
               <Products
                 formData={formData}
                 setData={setFormData}
