@@ -138,10 +138,10 @@ const PrintToPdf = forwardRef(
 							</tbody>
 						</table>
 					</div>
-					<div class='box12'>
+					{/* <div class='box12'>
 						<hr />
 						<p>Powered by OMEGA SOLUTION | Contact: 01885 996601</p>
-					</div>
+					</div> */}
 				</div>
 			</Fragment>
 		);

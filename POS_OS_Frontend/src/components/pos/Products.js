@@ -23,7 +23,8 @@ export default function Products({
             //padding: "1px",
 			width: "100%",
 			marginLeft: "0 !important",
-			marginRight: "0 !important"
+			marginRight: "0 !important",
+      marginTop: "10px !important"
           }}
         >
           <Col span={2}>
@@ -62,6 +63,7 @@ export default function Products({
                     sale_price,
                     selectedQty,
                     unit_measurement,
+                    unit_type,
                     ...restField
                   },
                   index
@@ -80,7 +82,7 @@ export default function Products({
                     <Col span={3}>
                       <Form.Item>
                         <div className="font-weight-bold">
-                          {unit_measurement ? unit_measurement : 0}
+                          {unit_measurement ? unit_measurement : 0}{unit_type}
                         </div>
                       </Form.Item>
                     </Col>
@@ -111,13 +113,13 @@ export default function Products({
                           }
                           defaultValue={sale_price}
                         /> */}
-                        {sale_price}
+                        ₹ {sale_price}
                       </Form.Item>
                     </Col>
                     <Col span={3}>
                       <Form.Item>
                         <div className="font-weight-bold">
-                          {selectedQty * sale_price}
+                        ₹ {selectedQty * sale_price}
                         </div>
                       </Form.Item>
                     </Col>

@@ -10,6 +10,7 @@ const addPurchaseAciton = (data) => {
 };
 
 export const addSale = (values) => {
+  
   return async (dispatch) => {
     try {
       const { data } = await axios({
@@ -22,7 +23,9 @@ export const addSale = (values) => {
         data: {
           ...values,
         },
+
       });
+      console.log("data sale", values)
       //dispatching data
 
       const newData = {

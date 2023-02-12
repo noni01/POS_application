@@ -1,17 +1,19 @@
 import React, { useState } from "react";
-import { Form, InputNumber, Select, Button } from "antd";
+import { Form, InputNumber, Select, Button, Row, Col } from "antd";
+import "./calculator.css";
 
 const { Option } = Select;
-const formItemLayout = {
-  labelCol: { span: 12 },
-  wrapperCol: { span: 12 },
-};
+// const formItemLayout = {
+//   labelCol: { span: 12 },
+//   wrapperCol: { span: 12 },
+// };
 
 export default function CalcQuant() {
   const [quantity, setQuantity] = useState(1);
-  const [unitQuantity, setUnitQuantity]= useState(1);
-  const [packets, setPackets] = useState("");
-  const [measurementType, setMeasurementType] = useState("kg");
+  const [unitQuantity, setUnitQuantity] = useState(1);
+
+  const [quanityType, setQuantityType] = useState("kg");
+  const [unitType, setUnitType] = useState("kg");
 
   const handleQuantityChange = (value) => {
     setQuantity(value);
@@ -20,57 +22,79 @@ export default function CalcQuant() {
     setUnitQuantity(value);
   };
 
-  const handleMeasurementTypeChange = (value) => {
-    setMeasurementType(value);
+  const handlequanityTypeChange = (value) => {
+    setQuantityType(value);
+  };
+
+  const handleUnitTypeChange = (value) => {
+    setUnitType(value);
   };
 
   let convertedQuantity = quantity;
-  if (measurementType === "g") {
+
+  if (quanityType === "g") {
     convertedQuantity = quantity / 1000;
   }
-  function returnQuantity(){
-    setPackets(convertedQuantity / unitQuantity)
+  let convertedUnitQuanity = unitQuantity;
+  if (unitType === "g") {
+    convertedUnitQuanity = unitQuantity / 1000;
   }
+  const totalNumber = (convertedQuantity / convertedUnitQuanity).toFixed(2);
   return (
-    <div>
-      <Form {...formItemLayout}>
-        <div
-          style={{
-            padding: "10px 20px",
-            display: "flex",
-            justifyContent: "space-between",
-          }}
-        >
-          <Form.Item label="Calculate Quantity">
-            <label> Required weight:</label>
-            <InputNumber
-              value={convertedQuantity}
-              onChange={handleQuantityChange}
-            />
-            <Select
-              value={measurementType}
-              onChange={handleMeasurementTypeChange}
-            >
-              <Option value="kg">kg</Option>
-              <Option value="g">g</Option>
-            </Select>
-          </Form.Item>
-        </div>
-        <div
-          style={{
-            padding: "10px 20px",
-            display: "flex",
-            justifyContent: "space-between",
-          }}
-        >
-          <Form.Item label="Measurement Type">
-            <label> Unit weight:</label>
-            <InputNumber
-            //   value={unitQuantity}
-              onChange={handleUnitQuantityChange}
-            />
-          </Form.Item>
-        </div>
+    <div className="calcLogic">
+      <Form>
+        <Row>
+          <Col span={24}>
+            <div className="d-flex justify-content-between gap-3">
+              <div className="w-50" style={{ maxWidth: "300px" }}>
+                <label> Required weight:</label>
+                <Form.Item
+                
+                style={{
+                  paddingTop: "10px",
+                  display: "flex",
+                  justifyContent:"space-around",
+                }}
+                >
+                  <InputNumber
+                    className="calc-input"
+                    value={quantity}
+                    onChange={handleQuantityChange}
+                  />
+                  <Select
+                    className="calc-input-select"
+                    value={quanityType}
+                    fire
+                    onChange={handlequanityTypeChange}
+                  >
+                    <Option value="kg">kg</Option>
+                    <Option value="g">g</Option>
+                  </Select>
+                </Form.Item>
+              </div>
+              <div className="w-50">
+                <label> Unit weight:</label>
+                <Form.Item
+                style={{
+                  paddingTop: "10px",
+                  display: "flex",
+                  justifyContent:"space-around",
+                }}>
+                  <InputNumber
+                    className="calc-input"
+                    value={unitQuantity}
+                    onChange={handleUnitQuantityChange}
+                  />
+                  <Select className="calc-input-select" value={unitType} fire onChange={handleUnitTypeChange}>
+                    <Option value="kg">kg</Option>
+                    <Option value="g">g</Option>
+                  </Select>
+                </Form.Item>
+              </div>
+              
+            </div>
+          </Col>
+        </Row>
         <div
                 style={{
                   padding: "10px 20px",
@@ -78,9 +102,11 @@ export default function CalcQuant() {
                   justifyContent: "space-between",
                 }}
               >
-                <Button onClick={returnQuantity}>Return quantity: </Button>
-                <strong> {packets}pkt</strong>
+                <strong>Return: </strong>
+                <strong> {totalNumber} pkt</strong>
               </div>
+
+        
       </Form>
     </div>
   );

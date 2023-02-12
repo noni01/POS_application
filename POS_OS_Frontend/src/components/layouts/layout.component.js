@@ -74,13 +74,13 @@ const HomeLayout = ({ children }) => (
           {children}
         </div>
       </Content>
-      <Footer
+      {/* <Footer
         style={{
           textAlign: "center",
         }}
       >
         Omega Solution ©2022 Smart ERP
-      </Footer>
+      </Footer> */}
     </Layout>
   </Layout>
 );

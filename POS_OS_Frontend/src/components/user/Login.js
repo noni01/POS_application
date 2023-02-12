@@ -33,6 +33,12 @@ const Login = () => {
 
   return (
     <>
+      {/* <div>
+        <h3 className=" ms-5 mt-2 mb-1 ">
+          Retail{" "}
+          <strong style={{ color: "#be3976	", fontWeight: "bold" }}>POS</strong>
+        </h3>
+      </div> */}
       <Row className="card-row">
         <Col span={24}>
           <Card bordered={false} className={styles.card}>
@@ -90,13 +96,13 @@ const Login = () => {
                 </Button>
               </Form.Item>
 
-              <Form.Item className={styles.loginTableContainer}>
+              {/* <Form.Item className={styles.loginTableContainer}>
                 <Row>
                   <Col span={24}>
                     <LoginTable />
                   </Col>
                 </Row>
-              </Form.Item>
+              </Form.Item> */}
             </Form>
           </Card>
         </Col>

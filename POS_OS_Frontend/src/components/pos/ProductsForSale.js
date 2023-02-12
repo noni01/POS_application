@@ -95,7 +95,7 @@ export default function ProductsForSale({ handleSelectedProds }) {
     }
 
     return (
-      <Col span={24} sm={12} xl={8} key={index}>
+      <Col span={24} sm={10} xl={5} key={index}>
         <Card
           hoverable
           style={{
@@ -127,7 +127,7 @@ export default function ProductsForSale({ handleSelectedProds }) {
               
               {stockMessage}
 
-              <p style={{ fontSize: "12px" }}> SKU : {item.sku}</p>
+              {/* <p style={{ fontSize: "12px" }}> SKU : {item.sku}</p> */}
             </div>
             <br />
           </div>
@@ -160,24 +160,25 @@ export default function ProductsForSale({ handleSelectedProds }) {
 
   return (
     <>
-      <div class="d-flex justify-content-around">
+      <div class="d-flex ">
         <div className="mt-2">
           <Form
             className="products-search-form"
             form={form}
             layout="inline"
-            labelCol={{
-              span: 8,
-            }}
-            wrapperCol={{
-              span: 16,
-            }}
+            // labelCol={{
+            //   span: 4,
+            // }}
+            // wrapperCol={{
+            //   span: 16,
+            // }}
             onFinish={onFinish}
             onFinishFailed={onFinishFailed}
             autoComplete="off"
+            // style={{width:"150px"}}
           >
-            <Form.Item label="Search" name="s_id">
-              <Input />
+            <Form.Item name="s_id">
+              <Input placeholder="search product.." style={{width:"100px"}} />
             </Form.Item>
 
             <Form.Item

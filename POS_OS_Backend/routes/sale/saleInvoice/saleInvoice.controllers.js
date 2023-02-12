@@ -3,6 +3,8 @@ const { PrismaClient } = require("@prisma/client");
 const prisma = new PrismaClient();
 
 const createSingleSaleInvoice = async (req, res) => {
+  console.log(req.body)
+  console.log("this fun is running")
   try {
     // calculate total sale price
     let totalSalePrice = 0;
@@ -52,7 +54,7 @@ const createSingleSaleInvoice = async (req, res) => {
             id: Number(req.body.user_id),
           },
         },
-        shipping_address: req.body.shipping_address,
+        shipping_address: req.body.shipping_address + `GST ${req.body.gst} % `,
         // map and save all products from request body array of products
         saleInvoiceProduct: {
           create: req.body.saleInvoiceProduct.map((product) => ({
@@ -75,7 +77,7 @@ const createSingleSaleInvoice = async (req, res) => {
           debit_id: 1,
           credit_id: 8,
           amount: parseFloat(req.body.paid_amount),
-          particulars: `Cash receive on Sale Invoice #${createdInvoice.id}`,
+          particulars: `Cash receive on Sale Invoice #${createdInvoice.id} GST ${req.body.gst} %`,
           type: "sale",
           related_id: createdInvoice.id,
         },
@@ -94,7 +96,7 @@ const createSingleSaleInvoice = async (req, res) => {
           debit_id: 4,
           credit_id: 8,
           amount: due_amount,
-          particulars: `Due on Sale Invoice #${createdInvoice.id}`,
+          particulars: `Due on Sale Invoice #${createdInvoice.id} GST ${req.body.gst} %`,
         },
       });
     }
@@ -105,7 +107,7 @@ const createSingleSaleInvoice = async (req, res) => {
         debit_id: 9,
         credit_id: 3,
         amount: totalPurchasePrice,
-        particulars: `Cost of sales on Sale Invoice #${createdInvoice.id}`,
+        particulars: `Cost of sales on Sale Invoice #${createdInvoice.id} GST ${req.body.gst} %`,
       },
     });
     // iterate through all products of this sale invoice and decrease product quantity

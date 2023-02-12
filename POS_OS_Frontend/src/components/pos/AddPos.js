@@ -73,20 +73,20 @@ const AddPos = ({
   const [customer, setCustomer] = useState(null);
 
   const [formData, setFormData] = useState({});
-  const [gst, setGst] = useState('');
+  const [gst, setGst] = useState(0);
 
-  function handleGst(gstamount) {
+  // function handleGst(gstamount) {
     
 
     
-    const gstPercentage = gstamount / 100;
-    console.log("gst percentage",gstPercentage)
+  //   const gstPercentage = gstamount / 100;
+  //   console.log("gst percentage",gstPercentage)
 
-    // Update the state with the converted value
-    setGst(gstPercentage);
+  //   // Update the state with the converted value
+  //   setGst(gstPercentage);
     
-  }
-  console.log("gst check: ", gst);
+  // }
+  // console.log("gst check: ", gst);
 
   const [totalDiscountPaidDue, setTotalDiscountPaidDue] = useState({
     total: 0,
@@ -222,6 +222,26 @@ const AddPos = ({
           size="large"
           autoComplete="off"
         >
+          <Col
+              span={24}
+              className="mt-2"
+              style={{
+                paddingRight: "0 !important",
+                paddingLeft: "0 !important",
+              }}
+            >
+              <CalcQuant/>
+              <Products
+                formData={formData}
+                setData={setFormData}
+                allProducts={allProducts}
+                // updateFormData={updateFormData}
+                selectedProds={selectedProds}
+                handleSelectedProdsQty={handleSelectedProdsQty}
+                handleSelectedProdsUnitPrice={handleSelectedProdsUnitPrice}
+                handleDeleteProd={handleDeleteProd}
+              />
+            </Col>
           <Row gutter={[24, 24]}>
             <Col span={24}>
               <div className="d-flex justify-content-between gap-3">
@@ -292,9 +312,9 @@ const AddPos = ({
                 }}
               >
                 <strong>Total: </strong>
-                <strong>{totalDiscountPaidDue.total + gst} INR</strong>
+                <strong>{totalDiscountPaidDue.total} INR</strong>
               </div>
-              <div
+              {/* <div
                 style={{
                   padding: "10px 20px",
                   display: "flex",
@@ -316,13 +336,13 @@ const AddPos = ({
                   <InputNumber type="number"  onChange={handleGst} />
                 </Form.Item>
                 
-              </div>
+              </div> */}
               <div
                 style={{
                   padding: "10px 20px",
                   display: "flex",
                   justifyContent: "space-between",
-                  alignItems: "center",
+                  // alignItems: "center",
                 }}
               >
                 <strong>Discount: </strong>
@@ -331,11 +351,11 @@ const AddPos = ({
                   rules={[
                     {
                       required: true,
-                      message: "Please input discount!",
+                      //message: "Please input discount!",
                     },
                   ]}
                 >
-                  <InputNumber type="number" onChange={handleDiscount} />
+                  <InputNumber  className="pos-input" type="number" onChange={handleDiscount} />
                 </Form.Item>
               </div>
 
@@ -347,7 +367,7 @@ const AddPos = ({
                 }}
               >
                 <strong>Pay Amount: </strong>
-                <strong>{totalDiscountPaidDue.afterDiscount + gst} INR</strong>
+                <strong>{totalDiscountPaidDue.afterDiscount} INR</strong>
               </div>
               <div
                 className="d-flex justify-content-between"
@@ -361,11 +381,11 @@ const AddPos = ({
                   rules={[
                     {
                       required: true,
-                      message: "Please input discount!",
+                      //message: "Please input amount!",
                     },
                   ]}
                 >
-                  <InputNumber type="number" onChange={handelReturnAmount} />
+                  <InputNumber  className="pos-input" type="number" onChange={handelReturnAmount} />
                 </Form.Item>
               </div>
               <div
@@ -376,7 +396,7 @@ const AddPos = ({
                 }}
               >
                 <strong>Return Amount: </strong>
-                <strong>{returnAmount} INR</strong>
+                <strong>{returnAmount.toFixed(2)} INR</strong>
               </div>
               {/* <div
                 style={{
@@ -437,26 +457,7 @@ const AddPos = ({
               {/* </div> */}
             </Col>
 
-            <Col
-              span={24}
-              className="mt-2"
-              style={{
-                paddingRight: "0 !important",
-                paddingLeft: "0 !important",
-              }}
-            >
-              <CalcLogic/>
-              <Products
-                formData={formData}
-                setData={setFormData}
-                allProducts={allProducts}
-                // updateFormData={updateFormData}
-                selectedProds={selectedProds}
-                handleSelectedProdsQty={handleSelectedProdsQty}
-                handleSelectedProdsUnitPrice={handleSelectedProdsUnitPrice}
-                handleDeleteProd={handleDeleteProd}
-              />
-            </Col>
+            
           </Row>
         </Form>
       </Card>

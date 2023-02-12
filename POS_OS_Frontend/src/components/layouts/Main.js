@@ -84,9 +84,9 @@ function Main({ children }) {
           ) : (
             <div>
               <h3 className="text-white ms-5 mt-2 mb-1 ">
-                POS{" "}
+                Retail{" "}
                 <strong style={{ color: "#be3976	", fontWeight: "bold" }}>
-                  OS
+                  POS
                 </strong>
               </h3>
             </div>

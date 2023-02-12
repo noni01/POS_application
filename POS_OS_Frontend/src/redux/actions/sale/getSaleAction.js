@@ -20,6 +20,7 @@ export const loadAllSale = ({ page, limit, startdate, enddate, user }) => {
 
 			//dispatching data
 			dispatch(getSaleAction(data));
+			console.log(data)
 			return {
 				message: "success",
 			};

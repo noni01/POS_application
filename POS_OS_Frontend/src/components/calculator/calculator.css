@@ -5,9 +5,20 @@
   align-items: center;
 }
 
-.cal-input{
-  width: 100px !important;
-  height: 30px !important
+.calc-input{
+  width: 70px !important;
+   height: 36px !important;
+ 
+  text-align: left;
+}
+.calc-input-select{
+  width: 60px !important;
+  border: none;
+  
+  
+}
+.calc-input-select>.ant-select-selector{
+  border: none !important
 }
 
 

@@ -58,13 +58,13 @@ const Sale = (props) => {
 
   return (
     <div>
-      <PageTitle title="Back" />
+      {/* <PageTitle title="Back" /> */}
 
-      <Row gutter={[20]}>
-        <Col span={24} lg={13} xl={14}>
+      <Row gutter={[24]}>
+        <Col span={24} lg={13} xl={16}>
           <ProductsForSale handleSelectedProds={handleSelectedProds} />
         </Col>
-        <Col span={24} lg={11} xl={10}>
+        <Col span={24} lg={11} xl={8}>
           <AddPos
             selectedProds={selectedProds}
             handleSelectedProdsQty={handleSelectedProdsQty}
