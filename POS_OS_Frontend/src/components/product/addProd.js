@@ -329,7 +329,7 @@ const AddProd = () => {
 								name='reorder_quantity'
 								rules={[
 									{
-										required: true,
+										// required: true,
 										message: "Please input  Reorder Quantity!",
 									},
 								]}>

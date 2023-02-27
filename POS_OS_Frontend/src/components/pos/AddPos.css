@@ -31,8 +31,9 @@
   }
   .card-pos{
     
-    width: 370px;
+    width: 100%;
     border: none;
+    padding: 12px;
        
   }
   
@@ -42,5 +43,9 @@
   
   .card-pos>.ant-card-body{
     padding: 0 !important;
+  }
+
+  .ant-card-body{
+    padding: 9px !important;
   }
   

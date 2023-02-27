@@ -2,21 +2,24 @@
 
 } */
 .calcLogic{
-  align-items: center;
+  
+  width: 100%;
+  
 }
 
 .calc-input{
   width: 70px !important;
-   height: 36px !important;
+   /* height: 36px !important; */
  
-  text-align: left;
+  text-align: center;
 }
-.calc-input-select{
+/* .calc-input-select{
   width: 60px !important;
+ 
   border: none;
   
   
-}
+} */
 .calc-input-select>.ant-select-selector{
   border: none !important
 }

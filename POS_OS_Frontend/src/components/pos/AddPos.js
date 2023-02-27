@@ -76,15 +76,13 @@ const AddPos = ({
   const [gst, setGst] = useState(0);
 
   // function handleGst(gstamount) {
-    
 
-    
   //   const gstPercentage = gstamount / 100;
   //   console.log("gst percentage",gstPercentage)
 
   //   // Update the state with the converted value
   //   setGst(gstPercentage);
-    
+
   // }
   // console.log("gst check: ", gst);
 
@@ -130,7 +128,7 @@ const AddPos = ({
 
   // Form Function
   const [form] = Form.useForm();
-  
+
   const onFormSubmit = async (values) => {
     const saleInvoiceProduct = selectedProds.map((prod) => {
       return {
@@ -148,7 +146,7 @@ const AddPos = ({
         customer_id: customer,
         user_id: user_id,
         gst: gst,
-        // total_amount: totalDiscountPaidDue.total,
+        total_amount: totalDiscountPaidDue.total,
         saleInvoiceProduct: [...saleInvoiceProduct],
       };
 
@@ -205,12 +203,25 @@ const AddPos = ({
       }));
     }
   }, [selectedProds, totalDiscountPaidDue.paid, totalDiscountPaidDue.discount]);
- 
 
   return (
-    <div className="card-pos">
-      <Card className="mt-4 ">
-        
+    <div className="card-pos" style={{backgroundColor: "rgb(245,245,245)"}}>
+      <div className="calc-box" style={{width: "500px"}}>
+        <CalcQuant />
+      </div>
+      
+      <Products
+        formData={formData}
+        setData={setFormData}
+        allProducts={allProducts}
+        // updateFormData={updateFormData}
+        selectedProds={selectedProds}
+        handleSelectedProdsQty={handleSelectedProdsQty}
+        handleSelectedProdsUnitPrice={handleSelectedProdsUnitPrice}
+        handleDeleteProd={handleDeleteProd}
+        handleDiscount={handleDiscount}
+      />
+      <div className="mt-0 " >
         <Form
           form={form}
           className="m-lg-1"
@@ -223,31 +234,19 @@ const AddPos = ({
           autoComplete="off"
         >
           <Col
-              span={24}
-              className="mt-2"
-              style={{
-                paddingRight: "0 !important",
-                paddingLeft: "0 !important",
-              }}
-            >
-              <CalcQuant/>
-              <Products
-                formData={formData}
-                setData={setFormData}
-                allProducts={allProducts}
-                // updateFormData={updateFormData}
-                selectedProds={selectedProds}
-                handleSelectedProdsQty={handleSelectedProdsQty}
-                handleSelectedProdsUnitPrice={handleSelectedProdsUnitPrice}
-                handleDeleteProd={handleDeleteProd}
-              />
-            </Col>
+            span={24}
+            className="mt-2"
+            style={{
+              paddingRight: "0 !important",
+              paddingLeft: "0 !important",
+            }}
+          ></Col>
           <Row gutter={[24, 24]}>
             <Col span={24}>
               <div className="d-flex justify-content-between gap-3">
                 <div className="w-50">
                   <Form.Item
-                    label="Customer "
+                    // label="Customer "
                     name="customer_id"
                     style={{ maxWidth: "250px" }}
                     rules={[
@@ -281,7 +280,7 @@ const AddPos = ({
                   </Form.Item>
                 </div>
                 <div className="w-50">
-                  <Form.Item label="Date" required>
+                  <Form.Item>
                     <DatePicker
                       className="date-picker"
                       onChange={(value) => setDate(value._d)}
@@ -302,11 +301,11 @@ const AddPos = ({
 
             <Col
               span={24}
-              style={{ border: "1px solid #ccc", padding: "10px 10px" }}
+              style={{  padding: "10px 10px",  }}
             >
               <div
                 style={{
-                  padding: "10px 20px",
+                  padding: "5px 10px",
                   display: "flex",
                   justifyContent: "space-between",
                 }}
@@ -316,7 +315,7 @@ const AddPos = ({
               </div>
               {/* <div
                 style={{
-                  padding: "10px 20px",
+                  padding: "5px 10px",
                   display: "flex",
                   alignItems: "center",
                   gap: "10px",
@@ -339,10 +338,11 @@ const AddPos = ({
               </div> */}
               <div
                 style={{
-                  padding: "10px 20px",
+                  padding: "5px 10px",
                   display: "flex",
                   justifyContent: "space-between",
-                  // alignItems: "center",
+
+                   alignItems: "center",
                 }}
               >
                 <strong>Discount: </strong>
@@ -355,13 +355,19 @@ const AddPos = ({
                     },
                   ]}
                 >
-                  <InputNumber  className="pos-input" type="number" onChange={handleDiscount} />
+                  {/* <InputNumber
+                    size="small"
+                    className="pos-input"
+                    type="number"
+                    onChange={handleDiscount}
+                  /> */}
+                  {totalDiscountPaidDue.discount}
                 </Form.Item>
               </div>
 
               <div
                 style={{
-                  padding: "10px 20px",
+                  padding: "5px 10px",
                   display: "flex",
                   justifyContent: "space-between",
                 }}
@@ -372,7 +378,7 @@ const AddPos = ({
               <div
                 className="d-flex justify-content-between"
                 style={{
-                  padding: "10px 20px",
+                  padding: "5px 10px",
                   alignItems: "center",
                 }}
               >
@@ -385,12 +391,17 @@ const AddPos = ({
                     },
                   ]}
                 >
-                  <InputNumber  className="pos-input" type="number" onChange={handelReturnAmount} />
+                  <InputNumber
+                    size="small"
+                    className="pos-input"
+                    type="number"
+                    onChange={handelReturnAmount}
+                  />
                 </Form.Item>
               </div>
               <div
                 style={{
-                  padding: "10px 20px",
+                  padding: "5px 10px",
                   display: "flex",
                   justifyContent: "space-between",
                 }}
@@ -400,7 +411,7 @@ const AddPos = ({
               </div>
               {/* <div
                 style={{
-                  padding: "10px 20px",
+                  padding: "5px 10px",
                   display: "flex",
                   gap: "10px",
                   //justifyContent: "space-between",
@@ -446,7 +457,7 @@ const AddPos = ({
 			  </div>
 			  <div
 				style={{
-				  padding: "10px 20px",
+				  padding: "5px 10px",
 				  display: "flex",
 				  justifyContent: "space-between",
 				  border: "1px solid #ccc",
@@ -456,11 +467,9 @@ const AddPos = ({
 							<strong>{totalDiscountPaidDue.due} INR</strong>*/}
               {/* </div> */}
             </Col>
-
-            
           </Row>
         </Form>
-      </Card>
+      </div>
     </div>
   );
 };

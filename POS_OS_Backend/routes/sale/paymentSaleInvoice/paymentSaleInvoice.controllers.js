@@ -3,6 +3,7 @@ const { PrismaClient } = require("@prisma/client");
 const prisma = new PrismaClient();
 
 const createSinglePaymentSaleInvoice = async (req, res) => {
+  
   try {
     // convert all incoming data to a specific format.
     const date = new Date(req.body.date).toISOString().split("T")[0];

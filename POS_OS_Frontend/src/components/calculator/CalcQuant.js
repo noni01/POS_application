@@ -45,23 +45,27 @@ export default function CalcQuant() {
       <Form>
         <Row>
           <Col span={24}>
-            <div className="d-flex justify-content-between gap-3">
-              <div className="w-50" style={{ maxWidth: "300px" }}>
+            <div className="d-flex  gap-3">
+              {/* <h5> Quantiy evaluate</h5> */}
+              <div className="" style={{ display: "flex" , alignItems: "center" }}>
                 <label> Required weight:</label>
                 <Form.Item
                 
                 style={{
-                  paddingTop: "10px",
+                  paddingTop: "5px",
                   display: "flex",
-                  justifyContent:"space-around",
+                  // justifyContent:"space-around",
                 }}
                 >
                   <InputNumber
+                  size="small"
                     className="calc-input"
                     value={quantity}
                     onChange={handleQuantityChange}
                   />
                   <Select
+                  size="small"
+                  style={{width: 50}}
                     className="calc-input-select"
                     value={quanityType}
                     fire
@@ -72,20 +76,22 @@ export default function CalcQuant() {
                   </Select>
                 </Form.Item>
               </div>
-              <div className="w-50">
+              <div className="w-60" style={{display: "flex", alignItems: "center" }}>
                 <label> Unit weight:</label>
                 <Form.Item
                 style={{
-                  paddingTop: "10px",
+                  paddingTop: "5px",
                   display: "flex",
+                  gap: "5px",
                   justifyContent:"space-around",
                 }}>
                   <InputNumber
+                  size="small"
                     className="calc-input"
                     value={unitQuantity}
                     onChange={handleUnitQuantityChange}
                   />
-                  <Select className="calc-input-select" value={unitType} fire onChange={handleUnitTypeChange}>
+                  <Select size="small" style={{width: 50}} className="calc-input-select" value={unitType} fire onChange={handleUnitTypeChange}>
                     <Option value="kg">kg</Option>
                     <Option value="g">g</Option>
                   </Select>
@@ -97,12 +103,14 @@ export default function CalcQuant() {
         </Row>
         <div
                 style={{
-                  padding: "10px 20px",
+                  paddingRight: "10px",
+                  paddingTop: "10px",
                   display: "flex",
-                  justifyContent: "space-between",
+                  gap: "10px"
+                  //justifyContent: "space-between",
                 }}
               >
-                <strong>Return: </strong>
+                <strong>Quantity: </strong>
                 <strong> {totalNumber} pkt</strong>
               </div>
 
